@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ASP.NET Core.Useful.Techniques.DataLayer\ASP.NET Core.Useful.Techniques.DataLayer.csproj" />
+    <ProjectReference Include="..\ASP.NET Core.Useful.Techniques.Models\ASP.NET Core.Useful.Techniques.Models.csproj" />
+    <ProjectReference Include="..\ASP.NET.Core.Useful.Techniques.Common\ASP.NET.Core.Useful.Techniques.Common.csproj" />
+  </ItemGroup>
+
+</Project>

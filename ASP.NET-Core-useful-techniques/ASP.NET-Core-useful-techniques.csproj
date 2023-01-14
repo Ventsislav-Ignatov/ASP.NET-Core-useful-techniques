@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>ASP.NET_Core_useful_techniques</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="7.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ASP.NET Core.Useful.Techniques.Models\ASP.NET Core.Useful.Techniques.Models.csproj" />
+    <ProjectReference Include="..\ASP.NET.Core.Useful.Techniques.Common\ASP.NET.Core.Useful.Techniques.Common.csproj" />
+    <ProjectReference Include="..\ASP.NET.Core.Useful.Techniques.Services\ASP.NET.Core.Useful.Techniques.Services.csproj" />
+  </ItemGroup>
+
+
+</Project>
