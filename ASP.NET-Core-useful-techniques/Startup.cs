@@ -27,7 +27,7 @@ namespace ASP.NET_Core_useful_techniques
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>();
-            services.AddScoped<IRepository, Repository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddControllers(options =>
             {

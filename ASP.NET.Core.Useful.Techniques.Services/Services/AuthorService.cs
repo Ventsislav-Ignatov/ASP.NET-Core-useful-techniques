@@ -3,6 +3,7 @@
     using ASP.NET.Core.Useful.Techniques.Services.Interfaces;
     using ASP.NET_Core.Useful.Techniques.DataLayer.Contracts;
     using ASP.NET_Core.Useful.Techniques.Models.Models;
+    using Microsoft.EntityFrameworkCore;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -11,9 +12,9 @@
 
     public class AuthorService : IAuthorService
     {
-        private IRepository repository;
+        private IUnitOfWork repository;
 
-        public AuthorService(IRepository repository)
+        public AuthorService(IUnitOfWork repository)
         {
             this.repository = repository;
         }
@@ -33,12 +34,14 @@
                 };
             }
 
-            await repository.CreateAuthorsAsync(authors);
+            repository.AuthorRepository.AddRange(authors);
+
+            await repository.SaveAsync();
         }
 
         public async Task<List<Author>> GetAllAuthorsAsync()
         {
-            return await this.repository.GetAuthorsAsync();
+            return await this.repository.AuthorRepository.All(x => x.Books).ToListAsync();    
         }
     }
 }
