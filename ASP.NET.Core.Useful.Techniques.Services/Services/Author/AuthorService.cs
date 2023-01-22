@@ -1,8 +1,10 @@
-﻿namespace ASP.NET.Core.Useful.Techniques.Services.Services
+﻿namespace ASP.NET.Core.Useful.Techniques.Services.Services.Author
 {
     using ASP.NET.Core.Useful.Techniques.Services.Interfaces;
     using ASP.NET_Core.Useful.Techniques.DataLayer.Contracts;
+    using ASP.NET_Core.Useful.Techniques.Models;
     using ASP.NET_Core.Useful.Techniques.Models.Models;
+    using AutoMapper;
     using Microsoft.EntityFrameworkCore;
     using System;
     using System.Collections.Generic;
@@ -10,13 +12,16 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class AuthorService : IAuthorService
+    public class AuthorService : Service, IAuthorService
     {
-        private IUnitOfWork repository;
+        private readonly IUnitOfWork repository;
+        private readonly IMapper mapper;
 
-        public AuthorService(IUnitOfWork repository)
+        public AuthorService(IUnitOfWork repository, IMapper mapper)
+            : base(mapper)
         {
             this.repository = repository;
+            this.mapper = mapper;
         }
 
         public async Task CreateAuthorAsync(IEnumerable<AuthorInputModel> model)
@@ -30,7 +35,7 @@
                     Id = Guid.NewGuid(),
                     FirstName = author.FirstName,
                     LastName = author.LastName,
-                    Books = new List<Book>(author.Books.Select(x => new Book { Id = Guid.NewGuid(), Title = x.Name}))
+                    Books = new List<Book>(author.Books.Select(x => new Book { Id = Guid.NewGuid(), Title = x.Name }))
                 };
             }
 
@@ -39,9 +44,11 @@
             await repository.SaveAsync();
         }
 
-        public async Task<List<Author>> GetAllAuthorsAsync()
+        public async Task<IEnumerable<GetAllAuthorsViewModel>> GetAllAuthorsAsync()
         {
-            return await this.repository.AuthorRepository.All(x => x.Books).ToListAsync();    
+            var authors = repository.AuthorRepository.All(x => x.Books);
+
+            return await this.mapper.ProjectTo<GetAllAuthorsViewModel>(authors).ToListAsync();
         }
     }
 }

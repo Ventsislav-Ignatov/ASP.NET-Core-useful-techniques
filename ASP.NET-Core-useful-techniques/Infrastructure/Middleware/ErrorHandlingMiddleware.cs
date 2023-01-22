@@ -1,4 +1,5 @@
 ﻿using ASP.NET.Core.Useful.Techniques.Common.Configs;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -48,6 +49,13 @@ namespace ASP.NET_Core_useful_techniques.Infrastructure.Middleware
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 await context.Response.WriteAsync(this.CreateResponseContent(Messages.DIRECTORY_NOT_FOUND));
             }
+
+            catch (AutoMapperConfigurationException ex)
+            {
+                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                await context.Response.WriteAsync(this.CreateResponseContent(Messages.AUTOMAPPER_FAILED));
+            }
+
             catch (Exception ex)
             {
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;

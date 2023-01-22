@@ -7,5 +7,7 @@
         public const string DIRECTORY_NOT_FOUND = "DIRECTORY_NOT_FOUND";
 
         public const string SERVER_ERROR = "SERVER_ERROR";
+
+        public const string AUTOMAPPER_FAILED = "AUTOMAPPER_FAILED";
     }
 }

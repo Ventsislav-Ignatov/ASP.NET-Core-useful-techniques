@@ -5,4 +5,8 @@
     <RootNamespace>ASP.NET_Core.Useful.Techniques.Models</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ASP.NET.Core.Useful.Techniques.Common\ASP.NET.Core.Useful.Techniques.Common.csproj" />
+  </ItemGroup>
+
 </Project>

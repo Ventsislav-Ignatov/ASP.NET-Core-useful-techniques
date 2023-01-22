@@ -2,7 +2,6 @@
 {
     using System;
     using ASP.NET_Core.Useful.Techniques.Models.Contracts;
-
     public class Book : IAuditable
     {
         public Guid Id { get; set; }

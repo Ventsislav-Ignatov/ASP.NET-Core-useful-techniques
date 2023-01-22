@@ -13,6 +13,7 @@ namespace ASP.NET_Core_useful_techniques
     using Microsoft.Extensions.Hosting;
     using System.Text.Json;
     using System.Text.Json.Serialization;
+    using AutoMapper;
 
     public class Startup
     {
@@ -39,6 +40,7 @@ namespace ASP.NET_Core_useful_techniques
             });
 
             services.AddDomainServices();
+            services.AddAutoMapper(this.GetType());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

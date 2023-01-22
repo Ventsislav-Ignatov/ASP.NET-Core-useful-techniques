@@ -1,6 +1,7 @@
 ﻿namespace ASP.NET.Core.Useful.Techniques.Services.Interfaces
 {
     using ASP.NET.Core.Useful.Techniques.Common.Interfaces;
+    using ASP.NET_Core.Useful.Techniques.Models;
     using ASP.NET_Core.Useful.Techniques.Models.Models;
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -9,6 +10,6 @@
     {
         Task CreateAuthorAsync(IEnumerable<AuthorInputModel> model);
 
-        Task<List<Author>> GetAllAuthorsAsync();
+        Task<IEnumerable<GetAllAuthorsViewModel>> GetAllAuthorsAsync();
     }
 }
